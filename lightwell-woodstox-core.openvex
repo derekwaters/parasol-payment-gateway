@@ -1,0 +1,16 @@
+{
+  "@context": "https://openvex.dev/ns/v0.2.0",
+  "@id": "https://openvex.dev/docs/public/vex-2e67563e128250cbcb3e98930df948dd053e43271d70dc50cfa22d57e03fe96f",
+  "author": "Red Hat Lightwell",
+  "timestamp": "2023-08-29T19:07:16.853479631-06:00",
+  "version": 1,
+  "statements": [
+    {
+      "vulnerability": {"name": "CVE-2022-40152"},
+      "products": [
+        {"@id": "pkg:maven/com.fasterxml.woodstox/woodstox-core@6.0.3.rhlw-00001"}
+      ],
+      "status": "fixed"
+    }
+  ]
+}
