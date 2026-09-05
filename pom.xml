@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.example</groupId>
+  <artifactId>woodstox-cve-demo</artifactId>
+  <version>1.0.0</version>
+  <packaging>jar</packaging>
+
+  <name>woodstox-cve-demo</name>
+  <description>
+    Demonstrates the CVE-2022-40152 (woodstox-core) dependency chain:
+    upgrading woodstox-core from 6.0.3 to 6.4.0 also requires updating the
+    parent library (jackson-dataformat-xml) that depends on it.
+  </description>
+
+  <properties>
+    <maven.compiler.release>11</maven.compiler.release>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+    <!-- The parent library: an OLD Jackson XML module that pulls woodstox 6.0.3 -->
+    <jackson.version>2.13.5</jackson.version>
+    <!-- Explicit pin of the transitively-required woodstox-core CVE target -->
+    <woodstox.version>6.4.0</woodstox.version>
+
+    <exec.mainClass>com.example.woodstoxdemo.App</exec.mainClass>
+  </properties>
+
+  <dependencies>
+    <!-- Parent library. jackson-dataformat-xml 2.10.2 depends on
+         woodstox-core 6.0.3 (VULNERABLE to CVE-2022-40152). -->
+    <dependency>
+      <groupId>com.fasterxml.jackson.dataformat</groupId>
+      <artifactId>jackson-dataformat-xml</artifactId>
+      <version>${jackson.version}</version>
+    </dependency>
+
+    <!-- Explicit dependency on woodstox-core. Because Maven uses
+         "nearest wins", this pin overrides whatever jackson-dataformat-xml
+         pulls in transitively. -->
+    <dependency>
+      <groupId>com.fasterxml.woodstox</groupId>
+      <artifactId>woodstox-core</artifactId>
+      <version>${woodstox.version}</version>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <!-- Fail the build when a dependency is resolved to a HIGHER version
+           than the one declared by another library in the tree. With an
+           explicit woodstox 6.4.0 + old jackson-dataformat-xml (declares
+           6.0.3), this rule is what surfaces the required parent upgrade
+           (jackson-dataformat-xml 2.13.5 declares woodstox 6.4.0). -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-enforcer-plugin</artifactId>
+        <version>3.4.1</version>
+        <executions>
+          <execution>
+            <id>enforce-dependency-convergence</id>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+            <configuration>
+              <rules>
+                <dependencyConvergence>
+                  <excludes>
+                    <!-- jackson 2.10.x pins stax2-api 4.2.1 while woodstox 6.0.x
+                         declares 4.2; that known skew is irrelevant to this demo. -->
+                    <exclude>org.codehaus.woodstox:stax2-api</exclude>
+                  </excludes>
+                </dependencyConvergence>
+              </rules>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <!-- Lets us run the demo with: mvn compile exec:java -->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>3.1.0</version>
+        <configuration>
+          <mainClass>${exec.mainClass}</mainClass>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>
