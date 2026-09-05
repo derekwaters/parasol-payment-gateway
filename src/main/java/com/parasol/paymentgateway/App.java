@@ -1,4 +1,4 @@
-package com.example.woodstoxdemo;
+package com.parasol.paymentgateway;
 
 import java.net.URL;
 import java.nio.file.Paths;

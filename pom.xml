@@ -4,12 +4,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.example</groupId>
-  <artifactId>woodstox-cve-demo</artifactId>
+  <groupId>com.parasol</groupId>
+  <artifactId>paymentgateway</artifactId>
   <version>1.0.0</version>
   <packaging>jar</packaging>
 
-  <name>woodstox-cve-demo</name>
+  <name>Parasol Payment Gateway</name>
   <description>
     Demonstrates the CVE-2022-40152 (woodstox-core) dependency chain:
     upgrading woodstox-core from 6.0.3 to 6.4.0 also requires updating the
@@ -20,12 +20,22 @@
     <maven.compiler.release>11</maven.compiler.release>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-    <!-- The parent library: an OLD Jackson XML module that pulls woodstox 6.0.3 -->
-    <jackson.version>2.13.5</jackson.version>
-    <!-- Explicit pin of the transitively-required woodstox-core CVE target -->
-    <woodstox.version>6.4.0</woodstox.version>
+    <!-- Initial State -->
+    <jackson.version>2.10.2</jackson.version>
+    <woodstox.version>6.0.3</woodstox.version>
+    <!-- -->
 
-    <exec.mainClass>com.example.woodstoxdemo.App</exec.mainClass>
+    <!-- Try to pin new woodstox 6.4.0
+    <jackson.version>2.10.2</jackson.version>
+    <woodstox.version>6.4.0</woodstox.version>
+    -->
+
+    <!-- Upgrade jackson library to match woodstox version
+    <jackson.version>2.13.5</jackson.version>
+    <woodstox.version>6.4.0</woodstox.version>
+    -->
+    
+    <exec.mainClass>com.parasol.paymentgateway.App</exec.mainClass>
   </properties>
 
   <dependencies>
