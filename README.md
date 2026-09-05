@@ -190,3 +190,11 @@ pinning woodstox 6.4.0 alone will not break `javac`. In a real project, rely on
 a `dependencyConvergence`-style enforcer rule in CI so that a version skew like
 "new woodstox + old parent library" fails the build with a clear, actionable
 message instead of shipping silently.
+
+
+
+## Security Scanner Setup
+##
+
+https://trivy.dev/docs/latest/guide/advanced/self-hosting/#vex-hub
+
