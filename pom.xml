@@ -20,10 +20,10 @@
     <maven.compiler.release>11</maven.compiler.release>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-    <!-- Initial State -->
+    <!-- Initial State
     <jackson.version>2.10.2</jackson.version>
     <woodstox.version>6.0.3</woodstox.version>
-    <!-- -->
+    -->
 
     <!-- Try to pin new woodstox 6.4.0
     <jackson.version>2.10.2</jackson.version>
@@ -34,6 +34,11 @@
     <jackson.version>2.13.5</jackson.version>
     <woodstox.version>6.4.0</woodstox.version>
     -->
+
+    <!-- Lightwell it -->
+    <jackson.version>2.10.2</jackson.version>
+    <woodstox.version>6.0.3.rhlw-00001</woodstox.version>
+    <!-- -->
     
     <exec.mainClass>com.parasol.paymentgateway.App</exec.mainClass>
   </properties>
@@ -81,6 +86,8 @@
                     <!-- jackson 2.10.x pins stax2-api 4.2.1 while woodstox 6.0.x
                          declares 4.2; that known skew is irrelevant to this demo. -->
                     <exclude>org.codehaus.woodstox:stax2-api</exclude>
+                    <!-- For the purposes of the demo, we want to exclude the lightwell patch -->
+                    <exclude>com.fasterxml.woodstox:woodstox-core:6.0.3.rhlw-00001</exclude>
                   </excludes>
                 </dependencyConvergence>
               </rules>

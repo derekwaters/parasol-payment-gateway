@@ -35,54 +35,55 @@ public final class App {
     public static void main(String[] args) throws Exception {
         XmlMapper mapper = new XmlMapper();
         Payment payment = mapper.readValue(PAYMENT_XML, Payment.class);
-        System.out.println("Parsed         : " + payment);
+        System.out.printf("\n\nPayment Gateway Initialised\n\n\nPAYMENT:\n\tTransaction Id: %s\n\tAmount: %f %s\n\tStatus: %s\n\n",
+            payment.txnId, payment.amount, payment.currency, payment.status);
+            
+        // System.out.println("Jackson (parent): " + resolveVersion(XmlMapper.class));
+        // System.out.println("Woodstox (engine): " + resolveVersion(com.ctc.wstx.stax.WstxInputFactory.class));
 
-        System.out.println("Jackson (parent): " + resolveVersion(XmlMapper.class));
-        System.out.println("Woodstox (engine): " + resolveVersion(com.ctc.wstx.stax.WstxInputFactory.class));
-
-        String woodstox = resolveVersion(com.ctc.wstx.stax.WstxInputFactory.class);
-        if (isVulnerableToCve202240152(woodstox)) {
-            System.out.println("CVE-2022-40152 : VULNERABLE (woodstox < 5.4.0 or 6.0.0-6.3.x)");
-        } else {
-            System.out.println("CVE-2022-40152 : NOT vulnerable");
-        }
+        // String woodstox = resolveVersion(com.ctc.wstx.stax.WstxInputFactory.class);
+        // if (isVulnerableToCve202240152(woodstox)) {
+        //     System.out.println("CVE-2022-40152 : VULNERABLE (woodstox < 5.4.0 or 6.0.0-6.3.x)");
+        // } else {
+        //     System.out.println("CVE-2022-40152 : NOT vulnerable");
+        // }
     }
 
-    private static boolean isVulnerableToCve202240152(String version) {
-        if (version == null || version.isBlank()) {
-            return true;
-        }
-        int[] v = parseVersion(version);
-        return (v[0] == 5 && v[1] < 4) || (v[0] == 6 && v[1] < 4);
-    }
+    // private static boolean isVulnerableToCve202240152(String version) {
+    //     if (version == null || version.isBlank()) {
+    //         return true;
+    //     }
+    //     int[] v = parseVersion(version);
+    //     return (v[0] == 5 && v[1] < 4) || (v[0] == 6 && v[1] < 4);
+    // }
 
-    private static int[] parseVersion(String version) {
-        String[] parts = version.split("\\.");
-        int[] v = new int[3];
-        for (int i = 0; i < v.length; i++) {
-            try {
-                v[i] = i < parts.length ? Integer.parseInt(parts[i].replaceAll("[^0-9].*$", "")) : 0;
-            } catch (NumberFormatException e) {
-                v[i] = 0;
-            }
-        }
-        return v;
-    }
+    // private static int[] parseVersion(String version) {
+    //     String[] parts = version.split("\\.");
+    //     int[] v = new int[3];
+    //     for (int i = 0; i < v.length; i++) {
+    //         try {
+    //             v[i] = i < parts.length ? Integer.parseInt(parts[i].replaceAll("[^0-9].*$", "")) : 0;
+    //         } catch (NumberFormatException e) {
+    //             v[i] = 0;
+    //         }
+    //     }
+    //     return v;
+    // }
 
-    private static String resolveVersion(Class<?> referenced) throws Exception {
-        URL location = referenced.getProtectionDomain().getCodeSource().getLocation();
-        String fileName = Paths.get(location.toURI()).getFileName().toString();
-        if (fileName.endsWith(".jar")) {
-            String base = fileName.substring(0, fileName.length() - ".jar".length());
-            int dash = base.lastIndexOf('-');
-            if (dash >= 0) {
-                return base.substring(dash + 1);
-            }
-        }
-        java.lang.Package pkg = referenced.getPackage();
-        String impl = pkg == null ? null : pkg.getImplementationVersion();
-        return impl != null ? impl : fileName;
-    }
+    // private static String resolveVersion(Class<?> referenced) throws Exception {
+    //     URL location = referenced.getProtectionDomain().getCodeSource().getLocation();
+    //     String fileName = Paths.get(location.toURI()).getFileName().toString();
+    //     if (fileName.endsWith(".jar")) {
+    //         String base = fileName.substring(0, fileName.length() - ".jar".length());
+    //         int dash = base.lastIndexOf('-');
+    //         if (dash >= 0) {
+    //             return base.substring(dash + 1);
+    //         }
+    //     }
+    //     java.lang.Package pkg = referenced.getPackage();
+    //     String impl = pkg == null ? null : pkg.getImplementationVersion();
+    //     return impl != null ? impl : fileName;
+    // }
 
     private App() {
     }
