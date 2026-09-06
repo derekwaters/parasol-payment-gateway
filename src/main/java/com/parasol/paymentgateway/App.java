@@ -1,7 +1,7 @@
 package com.parasol.paymentgateway;
 
-import java.net.URL;
-import java.nio.file.Paths;
+//import java.net.URL;
+//import java.nio.file.Paths;
 
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 
@@ -35,7 +35,7 @@ public final class App {
     public static void main(String[] args) throws Exception {
         XmlMapper mapper = new XmlMapper();
         Payment payment = mapper.readValue(PAYMENT_XML, Payment.class);
-        System.out.printf("\n\nPayment Gateway Initialised\n\n\nPAYMENT:\n\tTransaction Id: %s\n\tAmount: %f %s\n\tStatus: %s\n\n",
+        System.out.printf("\n\nPayment Gateway Initialised\n\n\nPAYMENT:\n\tTransaction Id: %s\n\tAmount: %.2f %s\n\tStatus: %s\n\n",
             payment.txnId, payment.amount, payment.currency, payment.status);
             
         // System.out.println("Jackson (parent): " + resolveVersion(XmlMapper.class));
