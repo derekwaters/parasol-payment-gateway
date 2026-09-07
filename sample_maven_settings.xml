@@ -1,0 +1,40 @@
+<settings>
+  <profiles>
+    <profile>
+      <id>lightwell-validated</id>
+      <repositories>
+        <repository>
+          <id>lightwell-validated</id>
+          <name>Red Hat Lightwell Network - Validated</name>
+          <url>https://packages.redhat.com/lightwell/public-lightwell-demo/java/validated/</url>
+          <releases>
+            <enabled>true</enabled>
+          </releases>
+          <snapshots>
+            <enabled>false</enabled>
+          </snapshots>
+        </repository>
+      </repositories>
+    </profile>		
+    <profile>
+      <id>lightwell-remediated</id>
+      <repositories>
+        <repository>
+          <id>lightwell-remediated</id>
+          <name>Red Hat Lightwell Network - Remediated</name>
+          <url>https://packages.redhat.com/lightwell/public-lightwell-demo/java/remediated/</url>
+          <releases>
+            <enabled>true</enabled>
+          </releases>
+          <snapshots>
+            <enabled>false</enabled>
+          </snapshots>
+        </repository>
+      </repositories>
+    </profile>
+  </profiles>
+  <activeProfiles>
+    <activeProfile>lightwell-remediated</activeProfile>
+    <activeProfile>lightwell-validated</activeProfile>
+  </activeProfiles>
+</settings>
