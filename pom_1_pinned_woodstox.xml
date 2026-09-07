@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.parasol</groupId>
+  <artifactId>paymentgateway</artifactId>
+  <version>1.0.0</version>
+  <packaging>jar</packaging>
+
+  <name>Parasol Payment Gateway</name>
+  <description>
+    Parasol Payment Gateway application that uses XML and JSON serialization
+    and deserialization.
+  </description>
+
+  <properties>
+    <maven.compiler.release>11</maven.compiler.release>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+    <!-- Try to pin new woodstox 6.4.0 -->
+    <jackson.version>2.10.2</jackson.version>
+    <woodstox.version>6.4.0</woodstox.version>
+    <!-- -->
+
+    <exec.mainClass>com.parasol.paymentgateway.App</exec.mainClass>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.fasterxml.jackson.dataformat</groupId>
+      <artifactId>jackson-dataformat-xml</artifactId>
+      <version>${jackson.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.fasterxml.woodstox</groupId>
+      <artifactId>woodstox-core</artifactId>
+      <version>${woodstox.version}</version>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-enforcer-plugin</artifactId>
+        <version>3.4.1</version>
+        <executions>
+          <execution>
+            <id>enforce-dependency-convergence</id>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+            <configuration>
+              <rules>
+                <dependencyConvergence>
+                  <excludes>
+                    <!-- jackson 2.10.x pins stax2-api 4.2.1 while woodstox 6.0.x
+                         declares 4.2; that known skew is irrelevant to this demo. -->
+                    <exclude>org.codehaus.woodstox:stax2-api</exclude>
+                    <!-- For the purposes of the demo, we want to exclude the lightwell patch -->
+                    <exclude>com.fasterxml.woodstox:woodstox-core:[6.0.3.rhlw-00001]</exclude>
+                  </excludes>
+                </dependencyConvergence>
+              </rules>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <!-- Lets us run the demo with: mvn compile exec:java -->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>3.1.0</version>
+        <configuration>
+          <mainClass>${exec.mainClass}</mainClass>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>

@@ -11,64 +11,29 @@
 
   <name>Parasol Payment Gateway</name>
   <description>
-    Demonstrates the CVE-2022-40152 (woodstox-core) dependency chain:
-    upgrading woodstox-core from 6.0.3 to 6.4.0 also requires updating the
-    parent library (jackson-dataformat-xml) that depends on it.
+    Parasol Payment Gateway application that uses XML and JSON serialization
+    and deserialization.
   </description>
 
   <properties>
     <maven.compiler.release>11</maven.compiler.release>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-    <!-- Initial State -->
     <jackson.version>2.10.2</jackson.version>
-    <woodstox.version>6.0.3</woodstox.version>
-    <!-- -->
-
-    <!-- Try to pin new woodstox 6.4.0
-    <jackson.version>2.10.2</jackson.version>
-    <woodstox.version>6.4.0</woodstox.version>
-    -->
-
-    <!-- Upgrade jackson library to match woodstox version 
-    <jackson.version>2.13.5</jackson.version>
-    <woodstox.version>6.4.0</woodstox.version>
-     -->
-
-    <!-- Lightwell patch
-    <jackson.version>2.10.2</jackson.version>
-    <woodstox.version>6.0.3.rhlw-00001</woodstox.version>
-    -->
     
     <exec.mainClass>com.parasol.paymentgateway.App</exec.mainClass>
   </properties>
 
   <dependencies>
-    <!-- Parent library. jackson-dataformat-xml 2.10.2 depends on
-         woodstox-core 6.0.3 (VULNERABLE to CVE-2022-40152). -->
     <dependency>
       <groupId>com.fasterxml.jackson.dataformat</groupId>
       <artifactId>jackson-dataformat-xml</artifactId>
       <version>${jackson.version}</version>
     </dependency>
-
-    <!-- Explicit dependency on woodstox-core. Because Maven uses
-         "nearest wins", this pin overrides whatever jackson-dataformat-xml
-         pulls in transitively. -->
-    <dependency>
-      <groupId>com.fasterxml.woodstox</groupId>
-      <artifactId>woodstox-core</artifactId>
-      <version>${woodstox.version}</version>
-    </dependency>
   </dependencies>
 
   <build>
     <plugins>
-      <!-- Fail the build when a dependency is resolved to a HIGHER version
-           than the one declared by another library in the tree. With an
-           explicit woodstox 6.4.0 + old jackson-dataformat-xml (declares
-           6.0.3), this rule is what surfaces the required parent upgrade
-           (jackson-dataformat-xml 2.13.5 declares woodstox 6.4.0). -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-enforcer-plugin</artifactId>
