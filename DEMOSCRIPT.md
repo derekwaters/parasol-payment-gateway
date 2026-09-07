@@ -110,7 +110,7 @@ To run this demo, you need to:
 4. Show the new pom and the dependencies. Point out that we've had to update the parent library to correct a CVE in the child dependency. And what happens as more and more CVEs are discovered?
 5. Verify that the system builds now:
 
-```mvn clean verify``
+```mvn clean verify```
 ```mvn dependency:tree```
 ```mvn compile exec:java```
 
@@ -126,7 +126,7 @@ To run this demo, you need to:
 5. Show the new pom, and that we've got our original jackson library, with a lightwell patched version of woodstox.
 6. Verify that this works:
 
-```mvn clean verify``
+```mvn clean verify```
 ```mvn dependency:tree```
 ```mvn compile exec:java```
 
