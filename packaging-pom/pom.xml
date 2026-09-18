@@ -5,7 +5,7 @@
   <version>2026.09.18</version>
   <packaging>pom</packaging>
   <properties>
-    <woodstox.version>6.4.0</woodstox.version>
+    <woodstox.version>6.0.3.rhlw-00001</woodstox.version>
   </properties>
   <dependencyManagement>
     <dependencies>
