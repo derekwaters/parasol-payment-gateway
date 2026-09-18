@@ -59,6 +59,12 @@ To run this demo, you need to:
   </activeProfiles>
 </settings>
 ```
+7. Preinstall the "security-bom" locally by running:
+
+``` bash
+cd packaging-pom
+mvn install
+```
 
 ## Demo Process and Suggested Description
 
@@ -123,16 +129,17 @@ To run this demo, you need to:
 ```cp pom_3_lightwell.xml pom.xml```
 
 4. Show our configuration for Lightwell (~/.m2/settings.xml) and that we've added the Lightwell repos in addition to the default Maven repo.
-5. Show the new pom, and that we've got our original jackson library, with a lightwell patched version of woodstox.
-6. Verify that this works:
+5. Show the new pom, and that we've got our original jackson library, with a local import of a new "security packaging BOM".
+6. Show packaging-pom/pom.xml and show that this can be managed by our DevSecOps team, and imported by all app teams.
+7. Verify that this works:
 
 ```mvn clean verify```
 ```mvn dependency:tree```
 ```mvn compile exec:java```
 
-7. Show the lightwell-woodstox-core.openvex file (a sample) which indicates that the CVE in question was corrected by the Lightwell patched library.
-8. Rerun our security scanner.
+8. Show the lightwell-woodstox-core.openvex file (a sample) which indicates that the CVE in question was corrected by the Lightwell patched library.
+9. Rerun our security scanner.
 
 ```trivy --vex lightwell-woodstox-core.openvex fs .```
 
-9. Show that CVE-2022-40152 is no longer listed, as we've now patched it.
+10. Show that CVE-2022-40152 is no longer listed, as we've now patched it.
