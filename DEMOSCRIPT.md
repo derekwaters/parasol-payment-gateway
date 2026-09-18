@@ -87,7 +87,7 @@ mvn install
 
 1. Run the security scanner:
 
-```trivy fs .```
+```trivy -q fs .```
 
 2. Call out one CVE in particular: CVE-2022-40152. This is specific to the child woodstox library.
 3. Open a browser to the CVE page (https://nvd.nist.gov/vuln/detail/cve-2022-40152)
@@ -140,6 +140,8 @@ mvn install
 8. Show the lightwell-woodstox-core.openvex file (a sample) which indicates that the CVE in question was corrected by the Lightwell patched library.
 9. Rerun our security scanner.
 
-```trivy --vex lightwell-woodstox-core.openvex fs .```
+```trivy -q --vex lightwell-woodstox-core.openvex fs .```
 
 10. Show that CVE-2022-40152 is no longer listed, as we've now patched it.
+
+```trivy -q --vex lightwell-woodstox-core.openvex fs . | grep 40152```
