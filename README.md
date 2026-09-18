@@ -11,6 +11,10 @@ parent library is a dependency-convergence violation, and the build fails until
 `jackson-dataformat-xml` is updated to a version that declares a compatible
 woodstox version.
 
+## Full Demo Instructions
+
+Full demo instructions are in the DEMOSCRIPT.md file.
+
 ## Version map used by this demo
 
 | `jackson-dataformat-xml` | Declared `woodstox-core` | CVE-2022-40152 |
