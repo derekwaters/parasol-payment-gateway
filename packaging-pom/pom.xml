@@ -1,0 +1,20 @@
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.parasol</groupId>
+  <artifactId>security-bom</artifactId>
+  <version>2026.09.18</version>
+  <packaging>pom</packaging>
+  <properties>
+    <woodstox.version>6.4.0</woodstox.version>
+  </properties>
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>com.fasterxml.woodstox</groupId>
+        <artifactId>woodstox-core</artifactId>
+        <version>${woodstox.version}</version>
+      </dependency>
+      <!-- more CVE-fixed coordinates -->
+    </dependencies>
+  </dependencyManagement>
+</project>
