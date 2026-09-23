@@ -145,3 +145,10 @@ mvn install
 10. Show that CVE-2022-40152 is no longer listed, as we've now patched it.
 
 ```trivy -q --vex lightwell-woodstox-core.openvex fs . | grep 40152```
+
+## Accompanying Resources
+
+Slide deck to go along with the demo, including YouTube links to a recording of this demo, are here (Red Hat internal):
+
+https://docs.google.com/presentation/d/1H5tMrGp9n_Prq_jT571ntMGYDndQL4_o3tSdecbC4V8/edit?slide=id.g3e71e2e86e1_0_1375&pli=1#slide=id.g3e71e2e86e1_0_1375
+
