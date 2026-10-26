@@ -1,0 +1,20 @@
+[Unit]
+Description=JFrog Artifactory OS Version on port 8082
+After=local-fs.target
+
+[Container]
+Image=releases-docker.jfrog.io/jfrog/artifactory-oss:7.77.10
+PublishPort=8081:8081
+PublishPort=8082:8082
+Environment=JF_SHARED_NODE_IP=127.0.0.1
+Environment=JF_SHARED_SECURITY_MASTERKEY=FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+Environment=JF_SHARED_SECURITY_JOINKEY=FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+Environment=JF_SHARED_EXTRAJAVAOPTS=-Xms2g -Xmx3g
+Environment=JF_SHARED_RESTRICTEDMODE_ENABLED=true
+Volume=artifactory_data.volume:/opt/jfrog/artifactory/var
+
+[Service]
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target default.target
