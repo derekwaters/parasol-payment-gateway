@@ -139,7 +139,7 @@ mvn dependency:purge-local-repository
 8. Show packaging-pom/pom.xml and show that this can be managed by our DevSecOps team, and imported by all app teams.
 9. Verify that this works:
 
-```mvn clean verify```
+```mvn clean verify -U```
 ```mvn dependency:tree```
 ```mvn compile exec:java```
 
