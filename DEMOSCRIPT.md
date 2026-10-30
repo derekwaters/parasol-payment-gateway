@@ -59,11 +59,17 @@ To run this demo, you need to:
   </activeProfiles>
 </settings>
 ```
-7. Preinstall the "security-bom" locally by running:
+5. Preinstall the "security-bom" locally by running:
 
 ``` bash
 cd packaging-pom
 mvn install
+```
+
+6. If you're rerunning the demo, clear the maven cache with:
+
+```bash
+mvn dependency:purge-local-repository
 ```
 
 ## Demo Process and Suggested Description
