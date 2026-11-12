@@ -152,6 +152,16 @@ mvn dependency:purge-local-repository
 
 ```trivy -q --vex lightwell-woodstox-core.openvex fs . | grep 40152```
 
+## Lens Stretch Goal
+
+You can generate a CycloneDX SBOM from a Maven project:
+
+```bash
+mvn org.cyclonedx:cyclonedx-maven-plugin:2.9.1:makeAggregateBom
+```
+
+And then load the resultant file(s) target/bom.json or target/bom.xml to [Lightwell Lens](https://console.redhat.com/lightwell/lens)
+
 ## Accompanying Resources
 
 Slide deck to go along with the demo, including YouTube links to a recording of this demo, are here (Red Hat internal):
