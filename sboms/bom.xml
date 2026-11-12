@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bom serialNumber="urn:uuid:224d22cb-5183-3b23-b030-dc8cb93d8aac" version="1" xmlns="http://cyclonedx.org/schema/bom/1.6">
+  <metadata>
+    <timestamp>2026-11-12T03:09:16Z</timestamp>
+    <lifecycles>
+      <lifecycle>
+        <phase>build</phase>
+      </lifecycle>
+    </lifecycles>
+    <tools>
+      <components>
+        <component type="library">
+          <author>OWASP Foundation</author>
+          <group>org.cyclonedx</group>
+          <name>cyclonedx-maven-plugin</name>
+          <version>2.9.1</version>
+          <description>CycloneDX Maven plugin</description>
+          <hashes>
+            <hash alg="MD5">9c7a565cf28cce58557d0c621c5ea4b1</hash>
+            <hash alg="SHA-1">be882d5a22050bfa9d19090b1420c188617d0e1c</hash>
+            <hash alg="SHA-256">698e0f37184a5b28c245c4065fd036dfce253b52f82fbb7113d81d36326cc249</hash>
+            <hash alg="SHA-512">c0f0b11026858166f872a2eb54719492e5cecaa0bc9cd6b30b3ecb4a174eed220f4a1b5829d18d6734128e778d3cb3db7ffed177c92866133129cb29081814a0</hash>
+            <hash alg="SHA-384">d80964707dfe5caca8c70521d5066f57589304c0a657e6fbc7c0614ea0fc7b3b3dbe7778361eee0f54ba111e9cb0ffcb</hash>
+            <hash alg="SHA3-384">80bc3a275d9514bc457461ff52a72add8c7ecbbc01d8912efce57139016c544ee776981851be0a58fa977ab4221f703f</hash>
+            <hash alg="SHA3-256">142317d6f245390f4fd2d0c100b16281b8dfc5c0c2cff86943bdcc97039cb699</hash>
+            <hash alg="SHA3-512">af0fb9137c90b65d1a07f72e4d51ae509956cdb8800f35c961b037cdda1fe4a14ce3b496cef71ba85f1621affcfe29cd42704ae4191ff0b090a9602087c8997b</hash>
+          </hashes>
+        </component>
+      </components>
+    </tools>
+    <component type="library" bom-ref="pkg:maven/com.parasol/paymentgateway@1.0.0?type=jar">
+      <group>com.parasol</group>
+      <name>paymentgateway</name>
+      <version>1.0.0</version>
+      <description>Parasol Payment Gateway application that uses XML and JSON serialization
+    and deserialization.</description>
+      <purl>pkg:maven/com.parasol/paymentgateway@1.0.0?type=jar</purl>
+    </component>
+    <properties>
+      <property name="maven.goal">makeAggregateBom</property>
+      <property name="maven.scopes">compile,provided,runtime,system</property>
+    </properties>
+  </metadata>
+  <components>
+    <component type="library" bom-ref="pkg:maven/com.fasterxml.jackson.dataformat/jackson-dataformat-xml@2.10.2?type=jar">
+      <publisher>FasterXML</publisher>
+      <group>com.fasterxml.jackson.dataformat</group>
+      <name>jackson-dataformat-xml</name>
+      <version>2.10.2</version>
+      <description>Data format extension for Jackson (http://jackson.codehaus.org) to offer
+alternative support for serializing POJOs as XML and deserializing XML as pojos.
+Support implemented on top of Stax API (javax.xml.stream), by implementing core Jackson Streaming API types like JsonGenerator, JsonParser and JsonFactory.
+Some data-binding types overridden as well (ObjectMapper sub-classed as XmlMapper).</description>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">ca1d87eb17acdb23f23c559bc43700d9</hash>
+        <hash alg="SHA-1">e294251193993e07130b1829bb185e0d0e41cf04</hash>
+        <hash alg="SHA-256">19bbf6fc23581aa2933dbbea2b66039c8c9e00deedbfcfb6f7d1ccfbf0bbd36e</hash>
+        <hash alg="SHA-512">dc55046e7c34042b06890e81f983a9aeb69b68a6c71ab4a8c57b733003086e37ade6694a887bcfc87edb95880d46533dec2e38aaf6ce2b0e0abb8510ff7f28d7</hash>
+        <hash alg="SHA-384">e3c73d929247bcca0c0983167bbdf78d57d9a73f53f3b644a9f0203d5d9b180ea2cc066bbd57a74f780e2bee4b5fce09</hash>
+        <hash alg="SHA3-384">7ecfcd947bdd2a65bc526f734b3fa937060328ed3d7c8b706fde4dabe80c4add380cadb0577ced0f610a5a5e9e148091</hash>
+        <hash alg="SHA3-256">4554091498754168c92dbf630da155f81bb7c76cd27e966b07523c29826c75b9</hash>
+        <hash alg="SHA3-512">259b3d658f9cf13f4b191ac15bfe5d19b331610337f558c29db40b87c63ed94dd62997426a5df28daf467a62fb23df65760c2a34e5bc1ecead82f243f37d3310</hash>
+      </hashes>
+      <licenses>
+        <license>
+          <id>Apache-2.0</id>
+        </license>
+      </licenses>
+      <purl>pkg:maven/com.fasterxml.jackson.dataformat/jackson-dataformat-xml@2.10.2?type=jar</purl>
+      <externalReferences>
+        <reference type="website">
+          <url>https://github.com/FasterXML/jackson-dataformat-xml</url>
+        </reference>
+        <reference type="distribution-intake">
+          <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </reference>
+        <reference type="issue-tracker">
+          <url>https://github.com/FasterXML/jackson-dataformat-xml/issues</url>
+        </reference>
+        <reference type="vcs">
+          <url>http://github.com/FasterXML/jackson-dataformat-xml</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="pkg:maven/com.fasterxml.jackson.core/jackson-core@2.10.2?type=jar">
+      <publisher>FasterXML</publisher>
+      <group>com.fasterxml.jackson.core</group>
+      <name>jackson-core</name>
+      <version>2.10.2</version>
+      <description>Core Jackson processing abstractions (aka Streaming API), implementation for JSON</description>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">5514a46e38331f8c8262ea63bf36483e</hash>
+        <hash alg="SHA-1">73d4322a6bda684f676a2b5fe918361c4e5c7cca</hash>
+        <hash alg="SHA-256">4c41f22a48f6ebb28752baeb6d25bf09ba4ff0ad8bfb82650dde448928b9da4f</hash>
+        <hash alg="SHA-512">5055943790cea2c3abbacbe91e63634e6d2e977cd59b08ce102c0ee7d859995eb5d150d530da3848235b2b1b751a8df55cff2c33d43da695659248187ddf1bff</hash>
+        <hash alg="SHA-384">4c7522e20c2a13aead0522d5529dd3b549584fd06e11fe06f1d61925699b632974a85be017bdfec8246151ff3b8c1c60</hash>
+        <hash alg="SHA3-384">945e9b6b6490d9b00aa26d5bbab4abaae1b4e9472949773138dcf2ddddcbcea7dd1b96d56e3284dfacc0fc6b73579311</hash>
+        <hash alg="SHA3-256">deb456d63c68b3866a12de9fc3ae7c2f535357c2f57c18151c010cb088519208</hash>
+        <hash alg="SHA3-512">0dfacc3e4e8a25e423b1bc7e68aec66c12957554b1235f6268a7b89239001ad33b8b2e7ed49ea23debef1e6e2dba6f915b73f17e3050067adc3cbcdba0072709</hash>
+      </hashes>
+      <licenses>
+        <license>
+          <id>Apache-2.0</id>
+        </license>
+      </licenses>
+      <purl>pkg:maven/com.fasterxml.jackson.core/jackson-core@2.10.2?type=jar</purl>
+      <externalReferences>
+        <reference type="website">
+          <url>https://github.com/FasterXML/jackson-core</url>
+        </reference>
+        <reference type="distribution-intake">
+          <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </reference>
+        <reference type="issue-tracker">
+          <url>https://github.com/FasterXML/jackson-core/issues</url>
+        </reference>
+        <reference type="vcs">
+          <url>http://github.com/FasterXML/jackson-core</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="pkg:maven/com.fasterxml.jackson.core/jackson-annotations@2.10.2?type=jar">
+      <publisher>FasterXML</publisher>
+      <group>com.fasterxml.jackson.core</group>
+      <name>jackson-annotations</name>
+      <version>2.10.2</version>
+      <description>Core annotations used for value types, used by Jackson data binding package.</description>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">d9e46501509b1751d64c495ab088a6cf</hash>
+        <hash alg="SHA-1">3a13b6105946541b8d4181a0506355b5fae63260</hash>
+        <hash alg="SHA-256">8c3cba89bf3e03b35a0e6f892c2eb17ed8fdde2e214c3a4c18703d63796bae46</hash>
+        <hash alg="SHA-512">b1d18136532fa89dd5d689d8dd1f02da02d876d44a722cc8d03ec71e65f98ed26e7c112dd349dbc24689628071b4fb8ceceb64523286e948b51164f19c8c8a8a</hash>
+        <hash alg="SHA-384">6381e0843bc49bd67dacdfb30f6f57e60863ee895383d354c3b33bd4ec93878b880da22d479bc202a3e102805980e4b9</hash>
+        <hash alg="SHA3-384">52e5604819b68664ddb33527ea66a5bbe44bbed02c8148351016ad5839d13c8e9f3afb2f1498d093a02f5c93a21025a3</hash>
+        <hash alg="SHA3-256">79280be6bcb9ba6141391cafb9f4109e375f7f1da726918b4b391a21a819c037</hash>
+        <hash alg="SHA3-512">f3dd10cb7ec88f6d42987801570d49fc8b632e2c8a615277ce212670bc05a851627bfdf0cd3555c4cebf9852907a1718530683425ead23e270c75070f0bec268</hash>
+      </hashes>
+      <licenses>
+        <license>
+          <id>Apache-2.0</id>
+        </license>
+      </licenses>
+      <purl>pkg:maven/com.fasterxml.jackson.core/jackson-annotations@2.10.2?type=jar</purl>
+      <externalReferences>
+        <reference type="website">
+          <url>http://github.com/FasterXML/jackson</url>
+        </reference>
+        <reference type="distribution-intake">
+          <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </reference>
+        <reference type="issue-tracker">
+          <url>https://github.com/FasterXML/jackson-annotations/issues</url>
+        </reference>
+        <reference type="vcs">
+          <url>http://github.com/FasterXML/jackson-annotations</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="pkg:maven/com.fasterxml.jackson.core/jackson-databind@2.10.2?type=jar">
+      <publisher>FasterXML</publisher>
+      <group>com.fasterxml.jackson.core</group>
+      <name>jackson-databind</name>
+      <version>2.10.2</version>
+      <description>General data-binding functionality for Jackson: works on core streaming API</description>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">057751b4e2dd1104be8caad6e9a3e589</hash>
+        <hash alg="SHA-1">0528de95f198afafbcfb0c09d2e43b6e0ea663ec</hash>
+        <hash alg="SHA-256">42c25644e35fadfbded1b7f35a8d1e70a86737f190e43aa2c56cea4b96cbda88</hash>
+        <hash alg="SHA-512">1a617535627227961eeb766ce7a6094cc865420724c661589127ea0b6ef73d1de8a6b46f11e4fe29f063ad2171ea198b7af35687d9010d09b65f965aabb0c474</hash>
+        <hash alg="SHA-384">9087887c4dcb2d80b726cf8c80fd037ef4ad10c06daefd093cbb216e33597dabb5c750fc1347e149f7641ea800fbd48d</hash>
+        <hash alg="SHA3-384">6e1fb748a35a6c981942df155361496f92199d31506c1784d37a084a89dedb8ef48108a92dd1e9b5f1f228026b90351e</hash>
+        <hash alg="SHA3-256">2b626adae887eeab733343c1db184014215d0773c4208d7b02770032468abbc5</hash>
+        <hash alg="SHA3-512">27228a8062f10b0c35bf5893220e7d8d38e93cb0a6f3f39f3d6b785096d9b3634d38fde33ddc9af825983511a93ab9881dce270fa1e8eb54c9dd642bf0d2976d</hash>
+      </hashes>
+      <licenses>
+        <license>
+          <id>Apache-2.0</id>
+        </license>
+      </licenses>
+      <purl>pkg:maven/com.fasterxml.jackson.core/jackson-databind@2.10.2?type=jar</purl>
+      <externalReferences>
+        <reference type="website">
+          <url>http://github.com/FasterXML/jackson</url>
+        </reference>
+        <reference type="distribution-intake">
+          <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </reference>
+        <reference type="issue-tracker">
+          <url>https://github.com/FasterXML/jackson-databind/issues</url>
+        </reference>
+        <reference type="vcs">
+          <url>http://github.com/FasterXML/jackson-databind</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="pkg:maven/com.fasterxml.jackson.module/jackson-module-jaxb-annotations@2.10.2?type=jar">
+      <publisher>FasterXML</publisher>
+      <group>com.fasterxml.jackson.module</group>
+      <name>jackson-module-jaxb-annotations</name>
+      <version>2.10.2</version>
+      <description>Support for using JAXB annotations as an alternative to "native" Jackson annotations, for configuring
+data-binding.</description>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">7f507009f45f004299f636ec59832fb4</hash>
+        <hash alg="SHA-1">1aaf73e41ba38598736da5ed0dccfe52dc60d607</hash>
+        <hash alg="SHA-256">ff87dcb6d1beddf4458127380ee2fb3504463a7f20420d66baa1590a65c15d33</hash>
+        <hash alg="SHA-512">a734653e335574eb7c2ac6b608c381bec79fbcc5b112093fba2c261c9f188c2e7e3728c2ec27b0fa9f257fe121e1cd94ff02bc490c1aad4e9ecac252a8c88c40</hash>
+        <hash alg="SHA-384">1bc19470fca5820c4c5a7cbcd533b16a1fe328a97bbe6ab34508dd8821fbb2d1c92f4991f6f16b1d7dd9815d553868f2</hash>
+        <hash alg="SHA3-384">e6f2b833790e56e5ecc62c28da5b079509c67eb93c1e1d67982d7714587941d635ff36b4b7f8f925b5e7c9cc3e826266</hash>
+        <hash alg="SHA3-256">2256630425b64152c186f2d2cb14db1824bfda039424edd44d8db20ce1796887</hash>
+        <hash alg="SHA3-512">888da7bc51d79be1d2b99948d4661e946b27af1c9860fb36c01ce4d31323e64ff751e5c4b6f726376b74fe95b8fc5bcbee7555ee8986cf1a5bcf59a5dbdc4227</hash>
+      </hashes>
+      <licenses>
+        <license>
+          <id>Apache-2.0</id>
+        </license>
+      </licenses>
+      <purl>pkg:maven/com.fasterxml.jackson.module/jackson-module-jaxb-annotations@2.10.2?type=jar</purl>
+      <externalReferences>
+        <reference type="website">
+          <url>https://github.com/FasterXML/jackson-modules-base</url>
+        </reference>
+        <reference type="distribution-intake">
+          <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </reference>
+        <reference type="issue-tracker">
+          <url>https://github.com/FasterXML/jackson-modules-base/issues</url>
+        </reference>
+        <reference type="vcs">
+          <url>http://github.com/FasterXML/jackson-modules-base/jackson-module-jaxb-annotations</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="pkg:maven/jakarta.xml.bind/jakarta.xml.bind-api@2.3.2?type=jar">
+      <publisher>Eclipse Foundation</publisher>
+      <group>jakarta.xml.bind</group>
+      <name>jakarta.xml.bind-api</name>
+      <version>2.3.2</version>
+      <description>JAXB (JSR 222) API</description>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">dabb40ba58199304c640b7bd8bb2fbac</hash>
+        <hash alg="SHA-1">8d49996a4338670764d7ca4b85a1c4ccf7fe665d</hash>
+        <hash alg="SHA-256">69156304079bdeed9fc0ae3b39389f19b3cc4ba4443bc80508995394ead742ea</hash>
+        <hash alg="SHA-512">5a9a94fc323aecc9c5b28e9ac688aac8d09725d4cae660a57f5698914db91e351283dfe4909a2cc6de803890ac2b3b9f06af9d071d465031e55326a1085a11db</hash>
+        <hash alg="SHA-384">78c5131ed2926819aea1a8a59d78ca9a9fa7e5e8da05a0816608bca4768569202b15b9666e5d608ef1611ecd409dca90</hash>
+        <hash alg="SHA3-384">cad8a0f18bd947886b832dbafec2e6bdb5c69c8694aba41c4f075ac54c5a8aabbcf32c3f981e0b657a390813a7cbc5bc</hash>
+        <hash alg="SHA3-256">5fe06acf4a556c000d128a93f91374d080547c3c0f7946c5f42cb198c5de5764</hash>
+        <hash alg="SHA3-512">0301ccd4fd04c2e01c0ee9a6cff68f297689db0c3c3da44eb302dcf6b03f24c811bc132460079ce52ff8b522100df23a955c950b68c0a89e2ba25e34baf9bcd9</hash>
+      </hashes>
+      <licenses>
+        <license>
+          <id>BSD-3-Clause</id>
+        </license>
+      </licenses>
+      <purl>pkg:maven/jakarta.xml.bind/jakarta.xml.bind-api@2.3.2?type=jar</purl>
+      <externalReferences>
+        <reference type="website">
+          <url>https://github.com/eclipse-ee4j/jaxb-api/jakarta.xml.bind-api</url>
+        </reference>
+        <reference type="distribution-intake">
+          <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </reference>
+        <reference type="issue-tracker">
+          <url>https://github.com/eclipse-ee4j/jaxb-api/issues</url>
+        </reference>
+        <reference type="mailing-list">
+          <url>https://dev.eclipse.org/mhonarc/lists/jaxb-dev</url>
+        </reference>
+        <reference type="vcs">
+          <url>https://github.com/eclipse-ee4j/jaxb-api.git/jakarta.xml.bind-api</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="pkg:maven/jakarta.activation/jakarta.activation-api@1.2.1?type=jar">
+      <publisher>Eclipse Foundation</publisher>
+      <group>jakarta.activation</group>
+      <name>jakarta.activation-api</name>
+      <version>1.2.1</version>
+      <description>JavaBeans Activation Framework API jar</description>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">9b647398add993324d3d9e5effa6005a</hash>
+        <hash alg="SHA-1">562a587face36ec7eff2db7f2fc95425c6602bc1</hash>
+        <hash alg="SHA-256">8b0a0f52fa8b05c5431921a063ed866efaa41dadf2e3a7ee3e1961f2b0d9645b</hash>
+        <hash alg="SHA-512">c60edc99f119b9e0df0cf527e2512f2b7ab9db0e17c54e83850695f80f652c981eaae90a296db671cf7ed88a044c150224e030df333feb30f346e8a31fb794c6</hash>
+        <hash alg="SHA-384">07422d64a103aacb8956c2067175f2cc257494d2cc8dbde29ddf8d93778a2d4b3903565b17173a0b5230b59d535bd474</hash>
+        <hash alg="SHA3-384">fe6be5e1fb1c0ee5236b2866c1e5058c84043fb4dc3dd5ad8f04e61c01c019c96e92ffdf1de0eaf7e657b2c02c6d898e</hash>
+        <hash alg="SHA3-256">880a91ff9e978ac9208c84babd820dc2ded42e601d8a17688eb30883b598dec0</hash>
+        <hash alg="SHA3-512">91c0b8cb956bdb06e79738a9db624022887b3d83838b708dd3c654f231ab6f9b4a27be2556fd14683cd6158bf8534b96acd2481054e0c946d6e9f641cc5af55b</hash>
+      </hashes>
+      <licenses>
+        <license>
+          <id>BSD-3-Clause</id>
+        </license>
+      </licenses>
+      <purl>pkg:maven/jakarta.activation/jakarta.activation-api@1.2.1?type=jar</purl>
+      <externalReferences>
+        <reference type="website">
+          <url>https://github.com/eclipse-ee4j/jaf/jakarta.activation-api</url>
+        </reference>
+        <reference type="distribution-intake">
+          <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </reference>
+        <reference type="issue-tracker">
+          <url>https://github.com/eclipse-ee4j/jaf/issues/</url>
+        </reference>
+        <reference type="mailing-list">
+          <url>https://dev.eclipse.org/mhonarc/lists/jakarta.ee-community/</url>
+        </reference>
+        <reference type="vcs">
+          <url>https://github.com/eclipse-ee4j/jaf/jakarta.activation-api</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="pkg:maven/org.codehaus.woodstox/stax2-api@4.2?type=jar">
+      <publisher>fasterxml.com</publisher>
+      <group>org.codehaus.woodstox</group>
+      <name>stax2-api</name>
+      <version>4.2</version>
+      <description>tax2 API is an extension to basic Stax 1.0 API that adds significant new functionality, such as full-featured bi-direction validation interface and high-performance Typed Access API.</description>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">5d22fe6dbb276d1fd6dab40c386a4f0a</hash>
+        <hash alg="SHA-1">13c2b30926bca0429c704c4b4ca0b5d0432b69cd</hash>
+        <hash alg="SHA-256">badf6081a0bb526fd2c01951dfefad91b6846b6dd0eb0048587e30d1dd334e68</hash>
+        <hash alg="SHA-512">4c7642993e96b6941cf80feb8ae7a285a0c6c8102d629cd265ec493bd05a6f2bab5b37979749430e0aa0625c269088692c36ed063b52e3b95e346f54e5dfa358</hash>
+        <hash alg="SHA-384">5d747ee5480365a3175d2b16cdc5763fcc476ed414134421c0dc59bcf9a63c321efd0b036ae6a6cf146e80977b326859</hash>
+        <hash alg="SHA3-384">67cac327dba0b16611fd58cac746ae38ac12b19e276108f01bba7e0a1cef7a0a5b96ef1b2f3d949e10e86f0a54853d78</hash>
+        <hash alg="SHA3-256">93083ae19e85f9dff5c66a08fdfb973f2cdd2d8d1f25519ff6bef94ebb1d7f22</hash>
+        <hash alg="SHA3-512">f5a03f0a85b6532e386079104340101bd3baa767bfd433359bde62dd98063ba6045a594453973cec5ac4a3cf4827222cf114bcba2515cd2054602f9876874aa9</hash>
+      </hashes>
+      <licenses>
+        <license>
+          <id>BSD-4-Clause</id>
+        </license>
+      </licenses>
+      <purl>pkg:maven/org.codehaus.woodstox/stax2-api@4.2?type=jar</purl>
+      <externalReferences>
+        <reference type="website">
+          <url>http://github.com/FasterXML/stax2-api</url>
+        </reference>
+        <reference type="distribution-intake">
+          <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </reference>
+        <reference type="issue-tracker">
+          <url>https://github.com/FasterXML/stax2-api/issues</url>
+        </reference>
+        <reference type="vcs">
+          <url>http://github.com/FasterXML/stax2-api</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="pkg:maven/com.fasterxml.woodstox/woodstox-core@6.0.3?type=jar">
+      <publisher>FasterXML</publisher>
+      <group>com.fasterxml.woodstox</group>
+      <name>woodstox-core</name>
+      <version>6.0.3</version>
+      <description>Woodstox is a high-performance XML processor that
+        implements Stax (JSR-173), SAX2 and Stax2 APIs</description>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">ca1b2f663ea1042d9275a836a42077f9</hash>
+        <hash alg="SHA-1">e4d732d251b7cc6be073cd9635d3259b70904b25</hash>
+        <hash alg="SHA-256">4424abea4c83d2086282e50629de1f8cbe3caea72dcb45fec2d008ded3ad8f5f</hash>
+        <hash alg="SHA-512">22194df5bb44cd6c4b28ca3d4146436a70185bb3025120545c4773b4693bfeed0141fd2ba5c5ca2d1c12a98f2c96320e5ec84c19b825071976243a11b77280d4</hash>
+        <hash alg="SHA-384">69566769e2ed1418391bd1ade32044dbcbd10c118e157e891feab7e7c61474a025da51515973ca7ebdc1c82250382256</hash>
+        <hash alg="SHA3-384">b5588c1dbd717c670e640988c8295008b0a4611fd3327d4f698378a6c30302a7e130ccfe37ed187658f58c011f1fcada</hash>
+        <hash alg="SHA3-256">65bf31cf4cc97210ebc89a4201ce6b6af50872237bdabdb3c2938099de86f3f3</hash>
+        <hash alg="SHA3-512">c2535b4f2b4a6ab87209f1c47f74393e8fc86833c1b0fa5be9322a6e379c2d0dfbea2a520cef43ee0efdd80d6f9462ef7c6aa81b9a00b26b7bf5f1506db895ca</hash>
+      </hashes>
+      <licenses>
+        <license>
+          <id>Apache-2.0</id>
+        </license>
+      </licenses>
+      <purl>pkg:maven/com.fasterxml.woodstox/woodstox-core@6.0.3?type=jar</purl>
+      <externalReferences>
+        <reference type="website">
+          <url>https://github.com/FasterXML/woodstox</url>
+        </reference>
+        <reference type="distribution-intake">
+          <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </reference>
+        <reference type="issue-tracker">
+          <url>https://github.com/FasterXML/woodstox/issues</url>
+        </reference>
+        <reference type="vcs">
+          <url>https://github.com/FasterXML/woodstox</url>
+        </reference>
+      </externalReferences>
+    </component>
+  </components>
+  <dependencies>
+    <dependency ref="pkg:maven/com.parasol/paymentgateway@1.0.0?type=jar">
+      <dependency ref="pkg:maven/com.fasterxml.jackson.dataformat/jackson-dataformat-xml@2.10.2?type=jar"/>
+    </dependency>
+    <dependency ref="pkg:maven/com.fasterxml.jackson.dataformat/jackson-dataformat-xml@2.10.2?type=jar">
+      <dependency ref="pkg:maven/com.fasterxml.jackson.core/jackson-core@2.10.2?type=jar"/>
+      <dependency ref="pkg:maven/com.fasterxml.jackson.core/jackson-annotations@2.10.2?type=jar"/>
+      <dependency ref="pkg:maven/com.fasterxml.jackson.core/jackson-databind@2.10.2?type=jar"/>
+      <dependency ref="pkg:maven/com.fasterxml.jackson.module/jackson-module-jaxb-annotations@2.10.2?type=jar"/>
+      <dependency ref="pkg:maven/org.codehaus.woodstox/stax2-api@4.2?type=jar"/>
+      <dependency ref="pkg:maven/com.fasterxml.woodstox/woodstox-core@6.0.3?type=jar"/>
+    </dependency>
+    <dependency ref="pkg:maven/com.fasterxml.jackson.core/jackson-core@2.10.2?type=jar"/>
+    <dependency ref="pkg:maven/com.fasterxml.jackson.core/jackson-annotations@2.10.2?type=jar"/>
+    <dependency ref="pkg:maven/com.fasterxml.jackson.core/jackson-databind@2.10.2?type=jar">
+      <dependency ref="pkg:maven/com.fasterxml.jackson.core/jackson-annotations@2.10.2?type=jar"/>
+      <dependency ref="pkg:maven/com.fasterxml.jackson.core/jackson-core@2.10.2?type=jar"/>
+    </dependency>
+    <dependency ref="pkg:maven/com.fasterxml.jackson.module/jackson-module-jaxb-annotations@2.10.2?type=jar">
+      <dependency ref="pkg:maven/com.fasterxml.jackson.core/jackson-annotations@2.10.2?type=jar"/>
+      <dependency ref="pkg:maven/com.fasterxml.jackson.core/jackson-core@2.10.2?type=jar"/>
+      <dependency ref="pkg:maven/com.fasterxml.jackson.core/jackson-databind@2.10.2?type=jar"/>
+      <dependency ref="pkg:maven/jakarta.xml.bind/jakarta.xml.bind-api@2.3.2?type=jar"/>
+      <dependency ref="pkg:maven/jakarta.activation/jakarta.activation-api@1.2.1?type=jar"/>
+    </dependency>
+    <dependency ref="pkg:maven/jakarta.xml.bind/jakarta.xml.bind-api@2.3.2?type=jar">
+      <dependency ref="pkg:maven/jakarta.activation/jakarta.activation-api@1.2.1?type=jar"/>
+    </dependency>
+    <dependency ref="pkg:maven/jakarta.activation/jakarta.activation-api@1.2.1?type=jar"/>
+    <dependency ref="pkg:maven/org.codehaus.woodstox/stax2-api@4.2?type=jar"/>
+    <dependency ref="pkg:maven/com.fasterxml.woodstox/woodstox-core@6.0.3?type=jar">
+      <dependency ref="pkg:maven/org.codehaus.woodstox/stax2-api@4.2?type=jar"/>
+    </dependency>
+  </dependencies>
+</bom>
