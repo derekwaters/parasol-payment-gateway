@@ -25,3 +25,9 @@ The admin username is 'admin'
 # Configuring for a Lightwell demo
 
 TODO:
+
+Need to go to the API -> search for ssrf -> do a PUT to add "packages.redhat.com" as an allowed domain
+Then add two Proxy libraries for remediated and validated Maven
+Then add a group repository with the two lightwell and then the maven-central repo
+Do the same for npm?
+Configure your build tools
