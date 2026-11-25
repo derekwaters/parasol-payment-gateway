@@ -1,0 +1,14 @@
+[Unit]
+Description=Sonatype Nexus OSS Version on port 8083
+After=local-fs.target
+
+[Container]
+Image=docker.io/sonatype/nexus3:latest
+PublishPort=8083:8081
+Volume=sonatype.volume:/nexus-data
+
+[Service]
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target default.target
