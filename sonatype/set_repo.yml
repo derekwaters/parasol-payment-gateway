@@ -1,0 +1,319 @@
+---
+- name: Set Repo Info
+  hosts: all
+  gather_facts: false
+  connection: local
+  vars:
+    set_repos:
+      - format: maven
+        type: proxy
+        details:
+          name: lightwell-validated-java-demo
+          format: "maven2"
+          online: true
+          type: "proxy"
+          proxy:
+            contentMaxAge: -1
+            metadataMaxAge: 1440
+            preserveEncodedCharacters: false
+            remoteUrl: "https://packages.redhat.com/lightwell/public-lightwell-demo/java/validated/"
+          negativeCache:
+            enabled: true
+            timeToLive: 1440
+          storage:
+            blobStoreName: "default"
+            strictContentTypeValidation: true
+            writePolicy: "ALLOW"
+          httpClient:
+            authentication: null
+          maven:
+            contentDisposition: "ATTACHMENT"
+            layoutPolicy: "STRICT"
+            versionPolicy: "RELEASE"
+      - format: maven
+        type: proxy
+        details:
+          name: lightwell-remediated-java-demo
+          format: "maven2"
+          online: true
+          type: "proxy"
+          proxy:
+            contentMaxAge: -1
+            metadataMaxAge: 1440
+            preserveEncodedCharacters: false
+            remoteUrl: "https://packages.redhat.com/lightwell/public-lightwell-demo/java/remediated/"
+          negativeCache:
+            enabled: true
+            timeToLive: 1440
+          storage:
+            blobStoreName: "default"
+            strictContentTypeValidation: true
+            writePolicy: "ALLOW"
+          httpClient:
+            authentication: null
+          maven:
+            contentDisposition: "ATTACHMENT"
+            layoutPolicy: "STRICT"
+            versionPolicy: "RELEASE"
+      - format: maven
+        type: group
+        details:
+          name: lightwell-enabled-maven-demo
+          format: "maven2"
+          online: true
+          type: "group"
+          storage:
+            blobStoreName: default
+            strictContentTypeValidation: true
+          group:
+            memberNames:
+              - lightwell-remediated-java-demo
+              - lightwell-validated-java-demo
+              - maven-central
+
+      - format: maven
+        type: proxy
+        details:
+          name: lightwell-validated-java
+          format: "maven2"
+          online: true
+          type: "proxy"
+          proxy:
+            contentMaxAge: -1
+            metadataMaxAge: 1440
+            preserveEncodedCharacters: false
+            remoteUrl: "https://packages.redhat.com/lightwell/java/validated/"
+          negativeCache:
+            enabled: true
+            timeToLive: 1440
+          storage:
+            blobStoreName: "default"
+            strictContentTypeValidation: true
+            writePolicy: "ALLOW"
+          httpClient:
+            authentication:
+              type: username
+              username: "{{ lw_username }}"
+              password: "{{ lw_token }}"
+          maven:
+            contentDisposition: "ATTACHMENT"
+            layoutPolicy: "STRICT"
+            versionPolicy: "RELEASE"
+      - format: maven
+        type: proxy
+        details:
+          name: lightwell-remediated-java
+          format: "maven2"
+          online: true
+          type: "proxy"
+          proxy:
+            contentMaxAge: -1
+            metadataMaxAge: 1440
+            preserveEncodedCharacters: false
+            remoteUrl: "https://packages.redhat.com/lightwell/java/remediated/"
+          negativeCache:
+            enabled: true
+            timeToLive: 1440
+          storage:
+            blobStoreName: "default"
+            strictContentTypeValidation: true
+            writePolicy: "ALLOW"
+          httpClient:
+            authentication: 
+              type: username
+              username: "{{ lw_username }}"
+              password: "{{ lw_token }}"
+          maven:
+            contentDisposition: "ATTACHMENT"
+            layoutPolicy: "STRICT"
+            versionPolicy: "RELEASE"
+      - format: maven
+        type: group
+        details:
+          name: lightwell-enabled-maven
+          format: "maven2"
+          online: true
+          type: "group"
+          storage:
+            blobStoreName: default
+            strictContentTypeValidation: true
+          group:
+            memberNames:
+              - lightwell-remediated-java
+              - lightwell-validated-java
+              - maven-central
+
+
+      - format: npm
+        type: proxy
+        details:
+          name: lightwell-validated-javascript
+          format: npm
+          type: proxy
+          online: true
+          storage:
+            blobStoreName: default
+            strictContentTypeValidation: true
+            writePolicy: "ALLOW"
+          proxy:
+            remoteUrl: "https://packages.redhat.com/lightwell/javascript/validated/"
+            contentMaxAge: -1
+            metadataMaxAge: 1440
+            preserveEncodedCharacters: false
+          negativeCache:
+            enabled: true
+            timeToLive: 1440
+          httpClient:
+            authentication:
+              type: username
+              username: "{{ lw_username }}"
+              password: "{{ lw_token }}"
+          npm:
+            removeQuarantinedVersions: false
+      - format: npm
+        type: proxy
+        details:
+          name: npmjs-default
+          format: npm
+          type: proxy
+          online: true
+          storage:
+            blobStoreName: default
+            strictContentTypeValidation: true
+            writePolicy: "ALLOW"
+          proxy:
+            remoteUrl: "https://registry.npmjs.org"
+            contentMaxAge: -1
+            metadataMaxAge: 1440
+            preserveEncodedCharacters: false
+          negativeCache:
+            enabled: true
+            timeToLive: 1440
+          httpClient:
+            authentication: null
+          npm:
+            removeQuarantinedVersions: false
+      - format: npm
+        type: group
+        details:
+          name: lightwell-enabled-npm
+          format: "npm"
+          online: true
+          type: "group"
+          storage:
+            blobStoreName: default
+            strictContentTypeValidation: true
+          group:
+            memberNames:
+              - lightwell-validated-javascript
+              - npmjs-default
+
+      - format: pypi
+        type: proxy
+        details:
+          name: lightwell-remediated-python
+          format: pypi
+          type: proxy
+          online: true
+          storage:
+            blobStoreName: default
+            strictContentTypeValidation: true
+            writePolicy: "ALLOW"
+          proxy:
+            remoteUrl: "https://packages.redhat.com/lightwell/python/remediated/"
+            contentMaxAge: -1
+            metadataMaxAge: 1440
+            preserveEncodedCharacters: false
+          negativeCache:
+            enabled: true
+            timeToLive: 1440
+          httpClient:
+            authentication:
+              type: username
+              username: "{{ lw_username }}"
+              password: "{{ lw_token }}"
+          pypi:
+            suffix: "/simple"
+            removeQuarantinedVersions: false
+      - format: pypi
+        type: proxy
+        details:
+          name: lightwell-validated-python
+          format: pypi
+          type: proxy
+          online: true
+          storage:
+            blobStoreName: default
+            strictContentTypeValidation: true
+            writePolicy: "ALLOW"
+          proxy:
+            remoteUrl: "https://packages.redhat.com/lightwell/python/validated/"
+            contentMaxAge: -1
+            metadataMaxAge: 1440
+            preserveEncodedCharacters: false
+          negativeCache:
+            enabled: true
+            timeToLive: 1440
+          httpClient:
+            authentication:
+              type: username
+              username: "{{ lw_username }}"
+              password: "{{ lw_token }}"
+          pypi:
+            suffix: "/simple"
+            removeQuarantinedVersions: false
+      - format: pypi
+        type: proxy
+        details:
+          name: pypi-default
+          format: pypi
+          type: proxy
+          online: true
+          storage:
+            blobStoreName: default
+            strictContentTypeValidation: true
+            writePolicy: "ALLOW"
+          proxy:
+            remoteUrl: "https://pypi.org/"
+            contentMaxAge: -1
+            metadataMaxAge: 1440
+            preserveEncodedCharacters: false
+          negativeCache:
+            enabled: true
+            timeToLive: 1440
+          httpClient:
+            authentication: null
+          pypi:
+            suffix: "/simple"
+            removeQuarantinedVersions: false
+      - format: pypi
+        type: group
+        details:
+          name: lightwell-enabled-pypi
+          format: "pypi"
+          online: true
+          type: "group"
+          storage:
+            blobStoreName: default
+            strictContentTypeValidation: true
+          group:
+            memberNames:
+              - lightwell-remediated-python
+              - lightwell-validated-python
+              - pypi-default
+
+
+  tasks:
+    - name: Apply the repos
+      ansible.builtin.include_role:
+        name: nexus_set_repo
+        apply:
+          vars:
+            nexus_set_repo_format: "{{ item.format }}"
+            nexus_set_repo_type: "{{ item.type }}"
+            nexus_set_repo_details: "{{ item.details }}"
+      loop: "{{ set_repos }}"
+        
+    - name: Debug It
+      ansible.builtin.debug:
+        var: nexus_api_result

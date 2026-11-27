@@ -1,0 +1,19 @@
+#SPDX-License-Identifier: MIT-0
+---
+# Inputs:
+#   nexus_get_repo_format
+#   nexus_get_repo_type
+#   nexus_get_repo_name
+#   nexus_api_scheme: http
+#   nexus_api_hostname: lightwell.localdomain
+#   nexus_api_port: 8083
+#   nexus_admin_username: admin
+#   nexus_admin_password: abc123
+
+- name: Call the Nexus API endpoint
+  ansible.builtin.include_role:
+    name: nexus_api
+    apply:
+      vars:
+        nexus_api_path: "service/rest/v1/repositories/{{ nexus_get_repo_format }}/{{ nexus_get_repo_type }}/{{ nexus_get_repo_name }}"
+        nexus_api_method: "GET"

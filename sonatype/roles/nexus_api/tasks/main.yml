@@ -1,0 +1,74 @@
+#SPDX-License-Identifier: MIT-0
+---
+#   nexus_get_repo_format
+#   nexus_get_repo_type
+#   nexus_get_repo_name
+#   nexus_api_scheme: http
+#   nexus_api_hostname: lightwell.localdomain
+#   nexus_api_port: 8083
+#   nexus_admin_username: admin
+#   nexus_admin_password: abc123
+
+
+- name: Construct the full URI
+  ansible.builtin.set_fact:
+    __full_uri: "{{ nexus_api_scheme }}://{{ nexus_api_hostname }}:{{ nexus_api_port }}/{{ nexus_api_path }}"
+
+#- name: Debug the URI
+#  ansible.builtin.debug:
+#    msg: "URI: {{ __full_uri }}"
+
+- name: Call the API (GET)
+  ansible.builtin.uri:
+    url: "{{ __full_uri }}"
+    method: "{{ nexus_api_method }}"
+    return_content: true
+    user: "{{ nexus_admin_username }}"
+    password: "{{ nexus_admin_password }}"
+    status_code:
+      - 200
+      - 404
+    force_basic_auth: true
+  register: __nexus_api_result
+  when: nexus_api_method == 'GET'
+
+#- name: Debug the output variable
+#  ansible.builtin.debug:
+#    var: __nexus_api_result
+#  when: nexus_api_method == 'GET'
+
+- name: Set the output variable
+  ansible.builtin.set_fact:
+    nexus_api_result:
+      success: "{{ (__nexus_api_result.status == 200) | bool }}"
+      output: "{{ __nexus_api_result.json }}"
+  when: nexus_api_method == 'GET'
+
+- name: Call the API (not GET)
+  ansible.builtin.uri:
+    url: "{{ __full_uri }}"
+    method: "{{ nexus_api_method }}"
+    return_content: true
+    body_format: json
+    user: "{{ nexus_admin_username }}"
+    password: "{{ nexus_admin_password }}"
+    force_basic_auth: true
+    body: "{{ nexus_api_body }}"
+    status_code:
+      - 200
+      - 201
+      - 204
+  register: __nexus_api_result
+  when: nexus_api_method != 'GET'
+
+#- name: Debug the output variable
+#  ansible.builtin.debug:
+#    var: __nexus_api_result
+#  when: nexus_api_method != 'GET'
+
+- name: Set the output variable
+  ansible.builtin.set_fact:
+    nexus_api_result:
+      success: "{{ (__nexus_api_result.status >= 200 and __nexus_api_result.status < 300) }} | bool"
+      output: "{{ __nexus_api_result.json | default({}) }}"
+  when: nexus_api_method != 'GET'

@@ -1,0 +1,43 @@
+---
+- name: Setup Sonatype Nexus to demo Lightwell
+  hosts: all
+  gather_facts: false
+
+  tasks:
+    - name: Ensure the service definitions are installed
+      become: true
+      ansible.builtin.copy:
+        src: item
+        dest: /etc/containers/systemd/
+        mode: 0644
+      loop:
+        - sonatype.volume
+        - sonatype.container
+    
+    - name: Ensure the sonatype service is started
+      become: true
+      ansible.builtin.systemd:
+        name: sonatype.service
+        enabled: true
+        state: started
+        daemon-reload: true
+      
+    - name: Retrieve the admin password
+      containers.podman.podman_container_copy:
+        src: /nexus-data/admin.password
+        dest: ./
+        container: systemd-sonatype
+        from_container: true
+
+    - name: Store the password
+      ansible.builtin.set_fact:
+        __admin_pwd: "{{ lookup('ansible.builtin.file', './admin.password') }}"
+    
+    - name: Cleanup the admin password
+      ansible.builtin.file:
+        path: ./admin.password
+        state: absent
+
+    - name: Write out information about the new instance
+      ansible.builtin.debug:
+        msg: "The Sonatype Nexus instance can be accessed at http://{{ ansible_hostname }}:8083/.\nThe admin username is 'admin' and the password is '{{ __admin_pwd }}'"

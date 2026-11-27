@@ -1,0 +1,51 @@
+---
+# Inputs:
+#   nexus_set_repo_format
+#   nexus_set_repo_type
+#   nexus_set_repo_details -> In format supported by Nexus API
+#   nexus_api_scheme: http
+#   nexus_api_hostname: lightwell.localdomain
+#   nexus_api_port: 8083
+#   nexus_admin_username: admin
+#   nexus_admin_password: abc123
+- name: Check for existing repo with the same name
+  ansible.builtin.include_role:
+    name: nexus_api
+    apply:
+      vars:
+        nexus_api_path: "service/rest/v1/repositories/{{ nexus_set_repo_format }}/{{ nexus_set_repo_type }}/{{ nexus_set_repo_details.name }}"
+        nexus_api_method: "GET"
+
+
+#- name: Do the debug thing
+#  ansible.builtin.debug:
+#    var: nexus_api_result
+
+- name: Does it already exist?
+  ansible.builtin.set_fact:
+    __repo_exists: "{{ nexus_api_result.success | bool }}"
+
+- name: If it exists, merge the retrieved data with the new data
+  ansible.builtin.set_fact:
+    __nexus_set_repo_details: "{{ nexus_api_result.output | ansible.builtin.combine(nexus_set_repo_details, recursive=true) }}"
+  when: __repo_exists
+
+- name: If it exists, then do a PUT with the new details
+  ansible.builtin.include_role:
+    name: nexus_api
+    apply:
+      vars:
+        nexus_api_path: "service/rest/v1/repositories/{{ nexus_set_repo_format }}/{{ nexus_set_repo_type }}/{{ nexus_set_repo_details.name }}"
+        nexus_api_method: "PUT"
+        nexus_api_body: "{{ __nexus_set_repo_details }}"
+  when: __repo_exists
+
+- name: If it doesn't exist, then do a POST with the new repo details
+  ansible.builtin.include_role:
+    name: nexus_api
+    apply:
+      vars:
+        nexus_api_path: "service/rest/v1/repositories/{{ nexus_set_repo_format }}/{{ nexus_set_repo_type }}"
+        nexus_api_method: "POST"
+        nexus_api_body: "{{ nexus_set_repo_details }}"
+  when: not __repo_exists
